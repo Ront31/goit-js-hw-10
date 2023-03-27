@@ -1,17 +1,16 @@
 import './css/styles.css';
-import { fetchCountries } from './fetchCountries';
 import debounce from 'lodash.debounce';
-import Notiflix from 'notiflix';
+import { fetchCountries } from './fetchCountries.js';
 
-const inputEl = document.querySelector('#search-box');
+const input = document.querySelector('#search-box');
 const countryList = document.querySelector('.country-list');
 const countryInfo = document.querySelector('.country-info');
 const DEBOUNCE_DELAY = 300;
 
-inputEl.addEventListener(
+input.addEventListener(
   'input',
   debounce(e => {
-    const trimmedValue = inputEl.value.trim();
+    const trimmedValue = input.value.trim();
     cleanHtml();
     if (trimmedValue !== '') {
       fetchCountries(trimmedValue).then(foundData => {
